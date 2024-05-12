@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 function Navbar() {
@@ -10,20 +10,20 @@ function Navbar() {
 
     const homeNav = <>
         <li>
-            <NavLink to={'/'}>Home</NavLink>
+            <Link to={'/'}>Home</Link>
         </li>
     </>
 
     const dashboard = <div className="z-50">
-        <li><NavLink to={'/add-service'}>Add Service</NavLink></li>
-        <li><NavLink to={'/manage-service'}>Manage Service</NavLink></li>
-        <li><NavLink to={'/book-service'}>Book Service</NavLink></li>
-        <li><NavLink to={'/service-to-do'}>Service To Do</NavLink></li>
+        <li><Link to={'/add-service'}>Add Service</Link></li>
+        <li><Link to={'/manage-service'}>Manage Service</Link></li>
+        <li><Link to={'/book-service'}>Book Service</Link></li>
+        <li><Link to={'/service-to-do'}>Service To Do</Link></li>
     </div>
 
     const loginRelatedNav = <> {
         !user &&
-        <li><NavLink to={'/login'}>Login</NavLink></li>
+        <li><Link to={'/login'}>Login</Link></li>
     }
     </>
 
@@ -46,7 +46,7 @@ function Navbar() {
                         {loginRelatedNav}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Himu Electronics</a>
+                <Link to={'/'} className="btn btn-ghost text-xl">Himu Electronics</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

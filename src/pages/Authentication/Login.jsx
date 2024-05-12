@@ -1,19 +1,26 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const { signInWithGoogle, setUser } = useAuth();
+    const { signInWithGoogle, setUser, logInUser } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const handleSignIn = async e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        logInUser(email, password)
+            .then(result => {
+                setUser(result.user)
+                console.log(result.user);
+                toast.success(`${result?.user?.displayName} have logged in successfully`)
+                navigate(location.state || '/');
+            })
     }
 
     const handleGoogleSignIn = () => {
