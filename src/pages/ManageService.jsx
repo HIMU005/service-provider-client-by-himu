@@ -25,7 +25,7 @@ const ManageService = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                 {
-                    manageData.map(manage => <SingleManage key={manage._id} single={manage} ></SingleManage>)
+                    manageData.map(manage => <SingleManage key={manage._id} single={manage} getPatchedData={getPatchedData} ></SingleManage>)
                 }
             </div>
         </div>

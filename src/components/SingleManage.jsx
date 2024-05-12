@@ -1,9 +1,21 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { FcDeleteDatabase, FcEditImage } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const SingleManage = ({ single }) => {
+const SingleManage = ({ single, getPatchedData }) => {
     console.log(single);
+    const handleDelete = async () => {
+        try {
+            const { data } = await axios.delete(`http://localhost:5000/service/${single._id}`)
+            console.log(data);
+            toast.success('Service delete successfully')
+            getPatchedData();
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className='p-4'>
             <div className='text-black '>
@@ -15,7 +27,7 @@ const SingleManage = ({ single }) => {
 
                 <div className=' flex gap-4'>
                     <button
-                        //  onClick={handleDelete}
+                        onClick={handleDelete}
                         className='btn p-0'><FcDeleteDatabase className='text-4xl font-bold' /></button>
                     <Link to={`/update-service/${single._id}`} className='btn p-0'><FcEditImage className='text-4xl font-bold' /></Link>
                 </div>
@@ -27,4 +39,5 @@ const SingleManage = ({ single }) => {
 export default SingleManage;
 SingleManage.propTypes = {
     single: PropTypes.object,
+    getPatchedData: PropTypes.func,
 }
