@@ -1,17 +1,41 @@
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const AddService = () => {
-
-    const handleAddService = e => {
+    const { user } = useAuth();
+    const handleAddService = async e => {
         e.preventDefault();
         const form = e.target;
         const serviceImg = form.serviceImg.value;
         const serviceName = form.serviceName.value;
-        const servicePrice = form.servicePrice.value;
+        const servicePrice = parseFloat(form.servicePrice.value);
         const serviceArea = form.serviceArea.value;
         const serviceDescription = form.serviceDescription.value;
-        console.log(serviceImg, serviceName, servicePrice, serviceArea, serviceDescription);
-    }
 
+        const servicePostData = {
+            serviceImg,
+            serviceName,
+            servicePrice,
+            serviceArea,
+            serviceDescription,
+            serviceProviderInfo: {
+                serviceProviderName: user?.displayName,
+                serviceProviderImg: user?.photoURL,
+                serviceProviderEmail: user?.email,
+            }
+        }
+        console.log(servicePostData);
+        console.log(typeof servicePrice);
+        try {
+            const { data } = await axios.post('http://localhost:5000/services', servicePostData)
+            console.log(data);
+            toast.success('your data add successfully')
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
     return (
         // who provide service 
         <div>
