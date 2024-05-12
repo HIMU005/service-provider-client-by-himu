@@ -1,7 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
+import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+    const { signInWithGoogle, setUser } = useAuth();
+    const navigate = useNavigate();
     const handleSignIn = async e => {
         e.preventDefault();
         const form = e.target;
@@ -10,6 +15,20 @@ const Login = () => {
 
         console.log(email, password);
     }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                setUser(result.user)
+                console.log(result.user);
+                toast.success(`${result?.user?.displayName} have logged in successfully`)
+                navigate(location.state || '/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
 
 
     return (
@@ -37,7 +56,7 @@ const Login = () => {
             <h2
                 className="w-1/2 mx-auto">Do not have an account? <Link to={"/register"} className="btn btn-link">Register</Link></h2>
             <div
-                //  onClick={handleGoogleSignIn}
+                onClick={handleGoogleSignIn}
                 className='flex cursor-pointer items-center justify-center mt-4 transition-colors duration-300 transform border rounded-lg  hover:bg-gray-50 '>
                 <div className='px-4 py-2'>
                     <FcGoogle className="text-2xl" />

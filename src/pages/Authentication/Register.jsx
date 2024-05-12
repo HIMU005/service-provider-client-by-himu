@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Register = () => {
-    const { signInWithGoogle, setUser } = useContext(AuthContext);
-    // console.log(googleLogin);
+    const { signInWithGoogle, setUser, createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleRegister = async e => {
         e.preventDefault();
         const form = e.target;
@@ -15,6 +19,17 @@ const Register = () => {
         const password = form.password.value;
 
         console.log(name, email, photo, password);
+        createUser(email, password)
+            .then(result => {
+                console.log(result);
+                toast.success("you have register successfully!!!")
+                navigate("/")
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: photo,
+                })
+                // setUser(result.user);
+            })
     }
 
     const handleGoogleSignIn = () => {
@@ -22,8 +37,8 @@ const Register = () => {
             .then(result => {
                 setUser(result.user)
                 console.log(result.user);
-                // toast.success(`${result.user.name} have logged in successfully`)
-                // navigate(location.state || '/');
+                toast.success(`${result?.user?.displayName} have logged in successfully`)
+                navigate(location.state || '/');
             })
             .catch(error => {
                 console.log(error);
