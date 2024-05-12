@@ -26,8 +26,7 @@ const AddService = () => {
                 serviceProviderEmail: user?.email,
             }
         }
-        console.log(servicePostData);
-        console.log(typeof servicePrice);
+
         try {
             const { data } = await axios.post('http://localhost:5000/services', servicePostData)
             console.log(data);

@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const ServicesBooking = ({ isModalOpen, onClose, single }) => {
     // console.log(single);
@@ -25,15 +26,28 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
         // };
         const servicePrice = single.servicePrice;
         const userEmail = user?.email;
-        if (serviceProviderEmail === userEmail) {
-            return toast.error("Access is not granted")
-        }
+        // if (serviceProviderEmail === userEmail) {
+        //     return toast.error("Access is not granted")
+        // }
         const userName = user?.displayName;
         const serviceDate = startDate;
         const instructions = form.instructions.value;
         const status = "Pending";
 
-        console.log(serviceId, serviceName, serviceImg, serviceProviderName, serviceProviderEmail, userEmail, userName, serviceDate, servicePrice, instructions, status);
+        const bookedService = {
+            serviceId, serviceName, serviceImg, userEmail, userName, serviceDate, servicePrice, instructions, status, serviceProvider: {
+                serviceProviderEmail, serviceProviderName
+            }
+        }
+        console.log(bookedService);
+
+        try {
+            const { data } = await axios.post('http://localhost:5000/bookedService', bookedService)
+            console.log(data);
+            toast.success('your data add successfully')
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
