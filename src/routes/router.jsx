@@ -8,6 +8,7 @@ import ManageService from "../pages/ManageService";
 import BookService from "../pages/BookService";
 import ServicesToDo from "../pages/ServicesToDo";
 import PrivateRoute from "./PrivateRoute";
+import AllService from "../pages/AllService";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
                 path: '/service-to-do',
                 element: <ServicesToDo />,
             },
+            {
+                path: '/all-service',
+                element: <AllService />,
+                loader: () => fetch('http://localhost:5000/services'),
+            }
 
         ]
     }
