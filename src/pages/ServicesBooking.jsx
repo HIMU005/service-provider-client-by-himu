@@ -45,6 +45,7 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
             const { data } = await axios.post('http://localhost:5000/bookedService', bookedService)
             console.log(data);
             toast.success('your data add successfully')
+            form.reset();
         } catch (err) {
             console.log(err);
         }
