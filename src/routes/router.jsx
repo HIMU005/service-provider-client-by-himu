@@ -9,6 +9,7 @@ import BookService from "../pages/BookService";
 import ServicesToDo from "../pages/ServicesToDo";
 import PrivateRoute from "./PrivateRoute";
 import AllService from "../pages/AllService";
+import ServiceDetails from "../pages/ServiceDetails";
 
 const router = createBrowserRouter([
     {
@@ -53,8 +54,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "/service/:id",
-                element:
-            }
+                element: <ServiceDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+            },
 
         ]
     }

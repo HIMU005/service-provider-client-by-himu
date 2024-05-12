@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 const AddService = () => {
     const { user } = useAuth();
+
     const handleAddService = async e => {
         e.preventDefault();
         const form = e.target;

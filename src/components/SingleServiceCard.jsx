@@ -16,7 +16,7 @@ const SingleServiceCard = ({ single }) => {
                     <img className='w-16 h-16 rounded-full' src={single.serviceProviderInfo.serviceProviderImg} alt={single.serviceProviderInfo.serviceProviderName} />
                     <h2 className='ml-4'> {single.serviceProviderInfo.serviceProviderName}</h2>
                 </div>
-                <Link to={`/service/{single._id}`} className='btn btn-info btn-outline w-full'>View Details</Link>
+                <Link to={`/service/${single._id}`} className='btn btn-info btn-outline w-full'>View Details</Link>
             </div>
         </div>
     );
