@@ -15,26 +15,29 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        logInUser(email, password)
-            .then(result => {
-                setUser(result.user)
-                console.log(result.user);
-                toast.success(`${result?.user?.displayName} have logged in successfully`)
-                navigate(location.state || '/');
-            })
+        try {
+            const result = await logInUser(email, password)
+            setUser(result.user)
+            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            navigate(location.state || '/');
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(result => {
-                setUser(result.user)
-                console.log(result.user);
-                toast.success(`${result?.user?.displayName} have logged in successfully`)
-                navigate(location.state || '/');
-            })
-            .catch(error => {
-                console.log(error);
-            })
+
+
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await signInWithGoogle();
+            setUser(result.user)
+            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            navigate(location.state || '/');
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -78,5 +81,6 @@ const Login = () => {
             </div>
         </section>)
 };
+
 
 export default Login;

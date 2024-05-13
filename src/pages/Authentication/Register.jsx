@@ -19,30 +19,31 @@ const Register = () => {
         const photo = form.photo.value;
         const password = form.password.value;
 
-        createUser(email, password)
-            .then(result => {
-                console.log(result);
-                toast.success("you have register successfully!!!")
-                navigate("/")
-                updateProfile(result.user, {
-                    displayName: name,
-                    photoURL: photo,
-                })
-                // setUser(result.user);
+        try {
+            const result = await createUser(email, password);
+            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            navigate(location.state || '/');
+            updateProfile(result.user, {
+                displayName: name,
+                photoURL: photo,
             })
+            setUser(result.user);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(result => {
-                setUser(result.user)
-                console.log(result.user);
-                toast.success(`${result?.user?.displayName} have logged in successfully`)
-                navigate(location.state || '/');
-            })
-            .catch(error => {
-                console.log(error);
-            })
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await signInWithGoogle();
+            setUser(result.user)
+            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            navigate(location.state || '/');
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     return (
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md text-black">
