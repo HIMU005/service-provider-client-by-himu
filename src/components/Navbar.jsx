@@ -29,11 +29,15 @@ function Navbar() {
         </li>
     </>
 
-    const dashboard = <div className="z-50">
-        <li><Link to={'/add-service'}>Add Service</Link></li>
-        <li><Link to={'/manage-service'}>Manage Service</Link></li>
-        <li><Link to={'/book-service'}>Book Service</Link></li>
-        <li><Link to={'/service-to-do'}>Service To Do</Link></li>
+    const dashboard = <div className=" bg-red-400">
+        {/* <Link to={'/add-service'}>Add Service</Link>
+        <Link to={'/manage-service'}>Manage Service</Link>
+        <Link to={'/book-service'}>Book Service</Link>
+        <Link to={'/service-to-do'}>Service To Do</Link> */}
+        <li><Link className="btn btn-ghost" to={'/add-service'}>Add Service</Link></li>
+        <li><Link className="btn btn-ghost" to={'/manage-service'}>Manage Service</Link></li>
+        <li><Link className="btn btn-ghost" to={'/book-service'}>Book Service</Link></li>
+        <li><Link className="btn btn-ghost" to={'/service-to-do'}>Service To Do</Link></li>
     </div>
 
     const loginRelatedNav = <> {
@@ -61,7 +65,7 @@ function Navbar() {
                         {/* small device  */}
                         {homeNav}
                         <li>
-                            <a>Dashboard</a>
+                            <a>Dashboard  </a>
                             <ul className="p-2">
                                 {dashboard}
                             </ul>
@@ -97,7 +101,7 @@ function Navbar() {
                         </div>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 
-                            <li onClick={handleSignOut}>Logout</li>
+                            <li className="btn" onClick={handleSignOut}>Logout</li>
                         </ul>
                     </div>
                 }

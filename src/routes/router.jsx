@@ -51,11 +51,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/book-service',
-                element: <BookService />,
+                element: <PrivateRoute>
+                    <BookService />
+                </PrivateRoute>,
             },
             {
                 path: '/service-to-do',
-                element: <ServicesToDo />,
+                element: <PrivateRoute>
+                    <ServicesToDo />
+                </PrivateRoute>
             },
             {
                 path: '/all-service',

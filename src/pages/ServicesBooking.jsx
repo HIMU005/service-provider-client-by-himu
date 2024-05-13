@@ -7,12 +7,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesBooking = ({ isModalOpen, onClose, single }) => {
     // console.log(single);
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useAuth();
     console.log(user);
+    const navigate = useNavigate();
 
     const handleUpdate = async e => {
         e.preventDefault();
@@ -26,9 +28,9 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
         // };
         const servicePrice = single.servicePrice;
         const userEmail = user?.email;
-        // if (serviceProviderEmail === userEmail) {
-        //     return toast.error("Access is not granted")
-        // }
+        if (serviceProviderEmail === userEmail) {
+            return toast.error("Access is not granted")
+        }
         const userName = user?.displayName;
         const serviceDate = startDate;
         const instructions = form.instructions.value;
@@ -46,6 +48,7 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
             console.log(data);
             toast.success('your data add successfully')
             form.reset();
+            navigate('/book-service');
         } catch (err) {
             console.log(err);
         }
