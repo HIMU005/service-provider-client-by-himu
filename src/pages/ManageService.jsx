@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import SingleManage from "../components/SingleManage";
+import { Helmet } from "react-helmet-async";
 
 const ManageService = () => {
     const { user } = useAuth();
@@ -20,6 +21,9 @@ const ManageService = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Manage service</title>
+            </Helmet>
             <h2>My Posted Data <span className="bg-sky-300 rounded-md w-40 text-blue-800 px-4">{manageData.length}  </span>
             </h2>
 

@@ -5,6 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -45,6 +46,9 @@ const Register = () => {
     }
     return (
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md text-black">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <h2 className="text-lg font-semibold capitalize "> SignUp Now</h2>
 
             <form onSubmit={handleRegister}>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ServicesBooking from "./ServicesBooking";
+import { Helmet } from "react-helmet-async";
 
 const ServiceDetails = () => {
     const single = useLoaderData();
@@ -16,6 +17,9 @@ const ServiceDetails = () => {
     };
     return (
         <div className="flex flex-col md:flex-row justify-between gap-4 mb-12 mx-auto border p-10">
+            <Helmet>
+                <title>Service details</title>
+            </Helmet>
             <div className="w-2/3 lg:w-1/2 mx-auto">
                 <img className='w-full h-max-[400px]' src={single.serviceImg} alt={single.serviceName} />
                 <h2 className='text-xl md:text-2xl lg:text-3xl font-medium md:font-semibold lg:font-bold mb-4 '>{single.serviceName}</h2>

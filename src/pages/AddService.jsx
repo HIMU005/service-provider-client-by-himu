@@ -1,6 +1,7 @@
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const AddService = () => {
     const { user } = useAuth();
@@ -40,6 +41,9 @@ const AddService = () => {
     return (
         // who provide service 
         <div>
+            <Helmet>
+                <title>Add service</title>
+            </Helmet>
             <form onSubmit={handleAddService} className="w-4/5 mx-auto">
                 {/* service img  */}
                 <label className="form-control w-full">

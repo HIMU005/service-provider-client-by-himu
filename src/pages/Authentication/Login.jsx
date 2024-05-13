@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { signInWithGoogle, setUser, logInUser } = useAuth();
@@ -40,6 +41,9 @@ const Login = () => {
 
     return (
         <section className="max-w-4xl p-6 mx-auto rounded-md shadow-md text-black">
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <h2 className="text-lg font-semibold capitalize dark:text-white"> SignUp Now</h2>
 
             <form onSubmit={handleSignIn}>
