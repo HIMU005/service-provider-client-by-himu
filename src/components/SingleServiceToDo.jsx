@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'; // ES6
 const SingleServiceToDo = ({ single, getData }) => {
     const handleUpdateStatus = async (orderId, status) => {
         try {
-            await axios.patch(`http://localhost:5000/bookedService-updateStatus/${single._id}`, { status });
+            await axios.patch(`https://service-provider-phi.vercel.app/bookedService-updateStatus/${single._id}`, { status });
             getData();
         } catch (error) {
             console.error("Error updating status:", error);

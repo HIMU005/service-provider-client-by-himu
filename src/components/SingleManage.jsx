@@ -8,7 +8,7 @@ const SingleManage = ({ single, getPatchedData }) => {
     console.log(single);
     const handleDelete = async () => {
         try {
-            const { data } = await axios.delete(`http://localhost:5000/service/${single._id}`)
+            const { data } = await axios.delete(`https://service-provider-phi.vercel.app/service/${single._id}`)
             console.log(data);
             toast.success('Service delete successfully')
             getPatchedData();

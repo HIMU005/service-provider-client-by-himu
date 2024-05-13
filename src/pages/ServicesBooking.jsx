@@ -44,7 +44,7 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
         console.log(bookedService);
 
         try {
-            const { data } = await axios.post('http://localhost:5000/bookedService', bookedService)
+            const { data } = await axios.post('https://service-provider-phi.vercel.app/bookedService', bookedService)
             console.log(data);
             toast.success('your data add successfully')
             form.reset();

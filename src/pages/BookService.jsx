@@ -14,7 +14,7 @@ const BookService = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/bookedService/${user?.email}`);
+            const { data } = await axios.get(`https://service-provider-phi.vercel.app/bookedService/${user?.email}`);
             setAllData(data);
         } catch (error) {
             console.error("Error fetching data:", error);

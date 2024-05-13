@@ -47,7 +47,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateService />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://service-provider-phi.vercel.app/service/${params.id}`)
             },
             {
                 path: '/book-service',
@@ -64,12 +64,12 @@ const router = createBrowserRouter([
             {
                 path: '/all-service',
                 element: <AllService />,
-                loader: () => fetch('http://localhost:5000/services'),
+                loader: () => fetch('https://service-provider-phi.vercel.app/services'),
             },
             {
                 path: "/service/:id",
                 element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://service-provider-phi.vercel.app/service/${params.id}`)
             },
 
         ]

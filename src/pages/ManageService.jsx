@@ -13,7 +13,7 @@ const ManageService = () => {
     }, [user])
 
     const getPatchedData = async () => {
-        const { data } = await axios(`http://localhost:5000/services/${user.email}`)
+        const { data } = await axios(`https://service-provider-phi.vercel.app/services/${user.email}`)
         setManageData(data);
 
     }

@@ -26,7 +26,7 @@ const UpdateService = () => {
         }
 
         try {
-            const { data } = await axios.patch(`http://localhost:5000/service/${single._id}`, serviceUpdateData)
+            const { data } = await axios.patch(`https://service-provider-phi.vercel.app/service/${single._id}`, serviceUpdateData)
             console.log(data);
             toast.success('your data update successfully')
             navigate('/manage-service');
