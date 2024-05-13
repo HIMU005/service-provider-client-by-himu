@@ -28,7 +28,7 @@ const ServicesToDo = () => {
             </Helmet>
             <h2>Service to do</h2>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table -z-10">
                     <thead>
                         <tr>
                             <th>Service Name</th>

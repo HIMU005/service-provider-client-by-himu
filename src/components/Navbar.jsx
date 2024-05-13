@@ -29,11 +29,7 @@ function Navbar() {
         </li>
     </>
 
-    const dashboard = <div className=" bg-red-400">
-        {/* <Link to={'/add-service'}>Add Service</Link>
-        <Link to={'/manage-service'}>Manage Service</Link>
-        <Link to={'/book-service'}>Book Service</Link>
-        <Link to={'/service-to-do'}>Service To Do</Link> */}
+    const dashboard = <div className=" z-50">
         <li><Link className="btn btn-ghost" to={'/add-service'}>Add Service</Link></li>
         <li><Link className="btn btn-ghost" to={'/manage-service'}>Manage Service</Link></li>
         <li><Link className="btn btn-ghost" to={'/book-service'}>Book Service</Link></li>

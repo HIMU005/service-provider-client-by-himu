@@ -29,7 +29,7 @@ const BookService = () => {
             </Helmet>
             <h2>Book service</h2>
             <div className="overflow-x-auto -z-20">
-                <table className="table">
+                <table className="table -z-30">
                     {/* head */}
                     <thead>
                         <tr>
@@ -40,16 +40,14 @@ const BookService = () => {
                         </tr>
                     </thead>
 
-
-                    <tbody className="-z-50">
-
+                    <tbody>
                         {
                             allData.map(single => <tr className="-z-20" key={single._id}>
                                 <td>
                                     {single.serviceName}
                                     <br />
                                     <span className="badge badge-ghost badge-sm">
-                                        {new Date(single.serviceDate).toLocaleString()}
+                                        {new Date(single.serviceDate).toLocaleDateString()}
                                     </span>
                                 </td>
 
@@ -64,7 +62,11 @@ const BookService = () => {
                                 </td>
 
                                 <td>{single.servicePrice}</td>
-                                <th>
+                                <th className={
+                                    single.status === "Completed" ? "text-green-600" :
+                                        single.status === "Working" ? "text-yellow-500" :
+                                            "text-blue-500"}
+                                >
                                     {single.status}
                                 </th>
                             </tr>)}
