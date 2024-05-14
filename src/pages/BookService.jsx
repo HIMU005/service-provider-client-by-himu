@@ -6,7 +6,6 @@ import home from '../../public/home.svg'
 
 const BookService = () => {
     const { user } = useAuth();
-    console.log(user.email);
     const [allData, setAllData] = useState([]);
 
     useEffect(() => {
@@ -22,7 +21,6 @@ const BookService = () => {
         }
     }
 
-    console.log(allData);
     return (
         <div>
             <Helmet>

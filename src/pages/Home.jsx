@@ -4,11 +4,8 @@ import Swippp from "../components/Swippp";
 import TextRunning from "../components/TextRunning";
 import SixCard from "../components/SixCard";
 import FeedBack from "../components/FeedBack";
-import useAuth from "../hooks/useAuth";
-import { Navigate, useLocation } from "react-router-dom";
 const Home = () => {
-    const { user } = useAuth();
-    const location = useLocation();
+
     return (
         <div className="-z-50">
             <Helmet>
