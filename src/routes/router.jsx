@@ -68,7 +68,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "/service/:id",
-                element: <ServiceDetails />,
+                element: <PrivateRoute>
+                    <ServiceDetails />
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`https://service-provider-phi.vercel.app/service/${params.id}`)
             },
 

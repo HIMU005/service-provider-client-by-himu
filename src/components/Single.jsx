@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'; // ES6
 
 const Single = ({ bannerSingleData }) => {
-    console.log(bannerSingleData);
     return (
         <div className='-z-50'>
             <div className=" overflow-hidden bg-white rounded-lg shadow-md ">
