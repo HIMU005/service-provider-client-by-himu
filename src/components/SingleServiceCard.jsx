@@ -5,8 +5,8 @@ const SingleServiceCard = ({ single }) => {
     console.log(single);
     return (
         <div className=' p-4'>
-            <div className='text-black '>
-                <img className='w-full h-max-[400px]' src={single.serviceImg} alt={single.serviceName} />
+            <div className="flex flex-col text-black ">
+                <img className='w-full h-96' src={single.serviceImg} alt={single.serviceName} />
                 <h2 className='text-xl md:text-2xl lg:text-3xl font-medium md:font-semibold lg:font-bold mb-4 '>{single.serviceName}</h2>
                 <p className='text-sm md:text-base font-normal text-justify'>{single.serviceDescription.substring(0, 100)}...</p>
                 <p className='text-accent'>Price:{single.servicePrice} </p>

@@ -51,7 +51,7 @@ function Navbar() {
     </>
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 w-11/12 mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,7 +62,7 @@ function Navbar() {
                         {homeNav}
                         <li>
                             <a>Dashboard  </a>
-                            <ul className="p-2">
+                            <ul className="p-2 z-50">
                                 {dashboard}
                             </ul>
                         </li>
@@ -75,12 +75,13 @@ function Navbar() {
                 <ul className="menu menu-horizontal px-1">
                     {homeNav}
                     <li>
-                        <details>
+                        <details >
                             <summary>Dashboard</summary>
-                            <ul className="p-2">
+                            <ul className="p-2 z-50">
                                 {dashboard}
                             </ul>
                         </details>
+
                     </li>
                     {loginRelatedNav}
                 </ul>

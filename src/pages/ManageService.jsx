@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import SingleManage from "../components/SingleManage";
 import { Helmet } from "react-helmet-async";
+import home from '../../public/home.svg'
 
 const ManageService = () => {
     const { user } = useAuth();
@@ -23,6 +24,7 @@ const ManageService = () => {
         <div>
             <Helmet>
                 <title>Manage service</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <h2>My Posted Data <span className="bg-sky-300 rounded-md w-40 text-blue-800 px-4">{manageData.length}  </span>
             </h2>

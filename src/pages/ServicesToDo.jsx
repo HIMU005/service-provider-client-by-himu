@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SingleServiceToDo from "../components/SingleServiceToDo";
+import home from '../../public/home.svg'
 
 const ServicesToDo = () => {
     const { user } = useAuth();
@@ -24,7 +25,7 @@ const ServicesToDo = () => {
     return (
         <div>
             <Helmet>
-                <title>Service to do</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <h2>Service to do</h2>
             <div className="overflow-x-auto">

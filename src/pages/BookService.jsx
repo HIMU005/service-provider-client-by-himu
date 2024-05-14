@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import home from '../../public/home.svg'
 
 const BookService = () => {
     const { user } = useAuth();
@@ -26,8 +27,8 @@ const BookService = () => {
         <div>
             <Helmet>
                 <title>Book service</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
-            <h2>Book service</h2>
             <div className="overflow-x-auto -z-20">
                 <table className="table -z-30">
                     {/* head */}

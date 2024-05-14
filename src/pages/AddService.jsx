@@ -2,6 +2,7 @@ import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import home from '../../public/home.svg'
 
 const AddService = () => {
     const { user } = useAuth();
@@ -43,6 +44,7 @@ const AddService = () => {
         <div>
             <Helmet>
                 <title>Add service</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <form onSubmit={handleAddService} className="w-4/5 mx-auto">
                 {/* service img  */}

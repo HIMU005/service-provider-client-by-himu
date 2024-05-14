@@ -2,6 +2,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import home from '../../public/home.svg'
 
 const UpdateService = () => {
     const single = useLoaderData();
@@ -39,6 +40,7 @@ const UpdateService = () => {
         <div>
             <Helmet>
                 <title>Update service</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <form onSubmit={handleUpdateService} className="w-4/5 mx-auto">
                 {/* service img  */}

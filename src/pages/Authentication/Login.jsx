@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
+import home from '../../../public/home.svg'
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,6 +47,7 @@ const Login = () => {
         <section className="max-w-4xl p-6 mx-auto rounded-md shadow-md text-black">
             <Helmet>
                 <title>Login</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <h2 className="text-lg font-semibold capitalize dark:text-white"> SignUp Now</h2>
 

@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet-async";
+import home from '../../../public/home.svg'
 
 
 const Register = () => {
@@ -49,6 +50,7 @@ const Register = () => {
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md text-black">
             <Helmet>
                 <title>Register</title>
+                <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <h2 className="text-lg font-semibold capitalize "> SignUp Now</h2>
 
