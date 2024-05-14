@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SixCard = () => {
     const [loadData, setLoadData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://service-provider-phi.vercel.app/services')
             .then(res => res.json())
             .then(data => setLoadData(data))
     }, [])
