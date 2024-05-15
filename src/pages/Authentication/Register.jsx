@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet-async";
 import home from '../../../public/home.svg'
+import axios from "axios";
 
 
 const Register = () => {
@@ -22,6 +23,10 @@ const Register = () => {
 
         try {
             const result = await createUser(email, password);
+            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+                email: result?.user?.email,
+            }, { withCredentials: true })
+            console.log(data);
             toast.success(`${result?.user?.displayName} have logged in successfully`)
             navigate(location.state || '/');
             updateProfile(result.user, {
@@ -38,6 +43,10 @@ const Register = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle();
+            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+                email: result?.user?.email,
+            }, { withCredentials: true })
+            console.log(data);
             setUser(result.user)
             toast.success(`${result?.user?.displayName} have logged in successfully`)
             navigate(location.state || '/');

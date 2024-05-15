@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet-async';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Login = () => {
     const { signInWithGoogle, setUser, logInUser } = useAuth();
@@ -19,6 +19,10 @@ const Login = () => {
 
         try {
             const result = await logInUser(email, password)
+            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+                email: result?.user?.email,
+            }, { withCredentials: true })
+            console.log(data);
             setUser(result.user)
             toast.success(`${result?.user?.displayName} have logged in successfully`)
             navigate(location.state || '/');
@@ -33,10 +37,10 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle();
-            // const { data } = await axios.post('http://localhost:5000/jwt', {
-            //     email: result?.user?.email,
-            // }, { withCredentials: true })
-            // console.log(data);
+            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+                email: result?.user?.email,
+            }, { withCredentials: true })
+            console.log(data);
             setUser(result.user)
             toast.success(`${result?.user?.displayName} have logged in successfully`)
             navigate(location.state || '/');
