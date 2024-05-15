@@ -1,8 +1,12 @@
-# React + Vite
+This website is about service provider. The feature of this website is here->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. any logged in user can post a service
+2. any logged in user can book any service
+3. service provider can update and delete his service if needed
+4. user who book any service can see the status of his booked service
+5. provider only can update the status from his to do route
+6. Provider can not update the status of the service if the service has completed
 
-Currently, two official plugins are available:
+live site link: https://service-provider-20102.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+category -> Electronic Item Repairing Services

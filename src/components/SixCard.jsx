@@ -10,12 +10,12 @@ const SixCard = () => {
     }, [])
     const bannerData = loadData.slice(0, 6);
     return (
-        <div>
+        <div className="my-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {
                     bannerData.map(single =>
-                        <div key={single._id} className='text-black '>
-                            <div className="flex flex-col text-black ">
+                        <div key={single._id} className='text-primary '>
+                            <div className="flex flex-col text-primary ">
                                 <img className='w-full h-96' src={single.serviceImg} alt={single.serviceName} />
                                 <h2 className='text-xl md:text-2xl lg:text-3xl font-medium md:font-semibold lg:font-bold mb-4 '>{single.serviceName}</h2>
                                 <p className='text-sm md:text-base font-normal text-justify'>{single.serviceDescription.substring(0, 100)}...</p>
