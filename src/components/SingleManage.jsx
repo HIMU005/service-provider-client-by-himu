@@ -6,15 +6,12 @@ import { toast } from 'react-toastify';
 import { API_URL } from '../api/baseUrl';
 
 const SingleManage = ({ single, getPatchedData }) => {
-    console.log(single);
     const handleDelete = async () => {
         try {
-            const { data } = await axios.delete(`${API_URL}/service/${single._id}`)
-            console.log(data);
+            await axios.delete(`${API_URL}/service/${single._id}`)
             toast.success('Service deleted successfully')
             getPatchedData();
         } catch (err) {
-            console.log(err);
             toast.error(err.message || 'Failed to delete service');
         }
     }

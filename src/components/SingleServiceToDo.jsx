@@ -11,7 +11,6 @@ const SingleServiceToDo = ({ single, getData }) => {
             console.error("Error updating status:", error);
         }
     };
-    // console.log(single);
     return (
         <tr>
 

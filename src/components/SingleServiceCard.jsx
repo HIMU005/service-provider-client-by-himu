@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'; // ES6
 import { Link } from 'react-router-dom';
 
 const SingleServiceCard = ({ single }) => {
-    console.log(single);
     return (
         <div className=' p-4'>
             <div className="flex flex-col text-black ">

@@ -6,7 +6,6 @@ import home from '../../public/home.svg'
 
 const ServiceDetails = () => {
     const single = useLoaderData();
-    // console.log(single);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {

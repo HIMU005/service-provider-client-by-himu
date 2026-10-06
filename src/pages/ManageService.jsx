@@ -24,7 +24,6 @@ const ManageService = () => {
             console.error(err);
         }
     }
-    console.log(manageData);
 
     return (
         <div>

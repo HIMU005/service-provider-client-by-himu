@@ -31,12 +31,10 @@ const AddService = () => {
         }
 
         try {
-            const { data } = await axios.post(`${API_URL}/services`, servicePostData)
-            console.log(data);
+            await axios.post(`${API_URL}/services`, servicePostData)
             toast.success('Your service was added successfully')
             form.reset();
         } catch (err) {
-            console.log(err);
             toast.error(err.message || 'Failed to add service');
         }
 

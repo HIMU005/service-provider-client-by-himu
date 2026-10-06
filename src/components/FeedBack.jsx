@@ -7,7 +7,6 @@ import { API_URL } from "../api/baseUrl";
 const FeedBack = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
-    // console.log(user);
 
     const handleFeedBack = async e => {
         e.preventDefault();
@@ -19,14 +18,11 @@ const FeedBack = () => {
             name: user?.displayName,
             email: user?.email,
         };
-        console.log(feedback);
         try {
-            const { data } = await axios.post(`${API_URL}/feedback`, feedback)
-            console.log(data);
+            await axios.post(`${API_URL}/feedback`, feedback)
             toast.success('Feedback submitted successfully')
             e.target.reset();
         } catch (err) {
-            console.log(err);
             toast.error(err.message || 'Failed to submit feedback');
         }
 
