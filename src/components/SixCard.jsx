@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../api/baseUrl";
 
 const SixCard = () => {
     const [loadData, setLoadData] = useState([]);
     useEffect(() => {
-        fetch('https://service-provider-phi.vercel.app/services')
+        fetch(`${API_URL}/services`)
             .then(res => res.json())
             .then(data => setLoadData(data))
+            .catch(err => console.error(err))
     }, [])
     const bannerData = loadData.slice(0, 6);
     return (

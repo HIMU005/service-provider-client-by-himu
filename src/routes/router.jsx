@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllService from "../pages/AllService";
 import ServiceDetails from "../pages/ServiceDetails";
 import UpdateService from "../pages/UpdateService";
+import { API_URL } from "../api/baseUrl";
 
 const router = createBrowserRouter([
     {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateService />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://service-provider-phi.vercel.app/service/${params.id}`)
+                loader: ({ params }) => fetch(`${API_URL}/service/${params.id}`)
             },
             {
                 path: '/book-service',
@@ -64,14 +65,14 @@ const router = createBrowserRouter([
             {
                 path: '/all-service',
                 element: <AllService />,
-                loader: () => fetch('https://service-provider-phi.vercel.app/services'),
+                loader: () => fetch(`${API_URL}/services`),
             },
             {
                 path: "/service/:id",
                 element: <PrivateRoute>
                     <ServiceDetails />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://service-provider-phi.vercel.app/service/${params.id}`)
+                loader: ({ params }) => fetch(`${API_URL}/service/${params.id}`)
             },
 
         ]

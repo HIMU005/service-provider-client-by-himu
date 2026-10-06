@@ -4,18 +4,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SingleServiceToDo from "../components/SingleServiceToDo";
 import home from '../../public/home.svg'
+import { API_URL } from "../api/baseUrl";
 
 const ServicesToDo = () => {
     const { user } = useAuth();
     const [allData, setAllData] = useState([]);
 
     useEffect(() => {
-        getData();
+        if (user?.email) {
+            getData();
+        }
     }, [user])
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`https://service-provider-phi.vercel.app/bookedService-provider/${user?.email}`);
+            const { data } = await axios.get(`${API_URL}/bookedService-provider/${user?.email}`);
             setAllData(data);
         } catch (error) {
             console.error("Error fetching data:", error);

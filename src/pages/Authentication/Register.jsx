@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -8,11 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet-async";
 import home from '../../../public/home.svg'
 import axios from "axios";
+import { API_URL } from "../../api/baseUrl";
 
 
 const Register = () => {
     const { signInWithGoogle, setUser, createUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
     const handleRegister = async e => {
         e.preventDefault();
         const form = e.target;
@@ -23,36 +26,38 @@ const Register = () => {
 
         try {
             const result = await createUser(email, password);
-            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
-                email: result?.user?.email,
-            }, { withCredentials: true })
-            console.log(data);
-            toast.success(`${result?.user?.displayName} have logged in successfully`)
-            navigate(location.state || '/');
-            updateProfile(result.user, {
+            await updateProfile(result.user, {
                 displayName: name,
                 photoURL: photo,
-            })
-            setUser(result.user);
+            });
+            setUser({ ...result.user, displayName: name, photoURL: photo });
+            const { data } = await axios.post(`${API_URL}/jwt`, {
+                email: result?.user?.email,
+            }, { withCredentials: true });
+            console.log(data);
+            toast.success(`${name || 'User'} registered successfully`);
+            navigate(location.state || '/');
         }
         catch (error) {
             console.log(error);
+            toast.error(error.message || 'Registration failed');
         }
     }
 
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle();
-            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+            const { data } = await axios.post(`${API_URL}/jwt`, {
                 email: result?.user?.email,
-            }, { withCredentials: true })
+            }, { withCredentials: true });
             console.log(data);
-            setUser(result.user)
-            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            setUser(result.user);
+            toast.success(`${result?.user?.displayName || 'User'} logged in successfully`);
             navigate(location.state || '/');
         }
         catch (error) {
             console.log(error);
+            toast.error(error.message || 'Google sign-in failed');
         }
     }
     return (
@@ -91,7 +96,7 @@ const Register = () => {
                 </div>
             </form>
             <h2
-                className="w-1/2 mx-auto">Already have an account? <Link to={"/login"} className="btn btn-link">SignUp</Link></h2>
+                className="w-1/2 mx-auto">Already have an account? <Link to={"/login"} className="btn btn-link">Login</Link></h2>
 
             <div
                 onClick={handleGoogleSignIn}

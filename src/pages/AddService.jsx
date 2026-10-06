@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 import home from '../../public/home.svg'
+import { API_URL } from "../api/baseUrl";
 
 const AddService = () => {
     const { user } = useAuth();
@@ -30,12 +31,13 @@ const AddService = () => {
         }
 
         try {
-            const { data } = await axios.post('https://service-provider-phi.vercel.app/services', servicePostData)
+            const { data } = await axios.post(`${API_URL}/services`, servicePostData)
             console.log(data);
-            toast.success('your data add successfully')
+            toast.success('Your service was added successfully')
             form.reset();
         } catch (err) {
             console.log(err);
+            toast.error(err.message || 'Failed to add service');
         }
 
     }

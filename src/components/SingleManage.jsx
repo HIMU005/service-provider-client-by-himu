@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import { FcDeleteDatabase, FcEditImage } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { API_URL } from '../api/baseUrl';
 
 const SingleManage = ({ single, getPatchedData }) => {
     console.log(single);
     const handleDelete = async () => {
         try {
-            const { data } = await axios.delete(`https://service-provider-phi.vercel.app/service/${single._id}`)
+            const { data } = await axios.delete(`${API_URL}/service/${single._id}`)
             console.log(data);
-            toast.success('Service delete successfully')
+            toast.success('Service deleted successfully')
             getPatchedData();
         } catch (err) {
             console.log(err);
+            toast.error(err.message || 'Failed to delete service');
         }
     }
     return (

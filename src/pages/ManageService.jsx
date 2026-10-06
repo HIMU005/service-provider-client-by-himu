@@ -4,19 +4,25 @@ import axios from "axios";
 import SingleManage from "../components/SingleManage";
 import { Helmet } from "react-helmet-async";
 import home from '../../public/home.svg'
+import { API_URL } from "../api/baseUrl";
 
 const ManageService = () => {
     const { user } = useAuth();
     const [manageData, setManageData] = useState([]);
 
     useEffect(() => {
-        getPatchedData();
+        if (user?.email) {
+            getPatchedData();
+        }
     }, [user])
 
     const getPatchedData = async () => {
-        const { data } = await axios(`https://service-provider-phi.vercel.app/services/${user.email}`)
-        setManageData(data);
-
+        try {
+            const { data } = await axios(`${API_URL}/services/${user?.email}`);
+            setManageData(data);
+        } catch (err) {
+            console.error(err);
+        }
     }
     console.log(manageData);
 

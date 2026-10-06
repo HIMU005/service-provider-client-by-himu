@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "../api/baseUrl";
 
 const FeedBack = () => {
     const navigate = useNavigate();
@@ -20,12 +21,13 @@ const FeedBack = () => {
         };
         console.log(feedback);
         try {
-            const { data } = await axios.post('https://service-provider-phi.vercel.app/feedback', feedback)
+            const { data } = await axios.post(`${API_URL}/feedback`, feedback)
             console.log(data);
-            toast.success('your data add successfully')
+            toast.success('Feedback submitted successfully')
             e.target.reset();
         } catch (err) {
             console.log(err);
+            toast.error(err.message || 'Failed to submit feedback');
         }
 
 

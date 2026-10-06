@@ -6,19 +6,21 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import Single from "./Single";
+import { API_URL } from "../api/baseUrl";
 
 
 const Swippp = () => {
     const [loadData, setLoadData] = useState([]);
     useEffect(() => {
-        fetch('https://service-provider-phi.vercel.app/services')
+        fetch(`${API_URL}/services`)
             .then(res => res.json())
             .then(data => setLoadData(data))
+            .catch(err => console.error(err))
     }, [])
     const bannerData = loadData.slice(0, 6);
 
     return (
-        <div className="w-11/12 mx-auto -z-40">
+        <div className="w-11/12 mx-auto">
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}

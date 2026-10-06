@@ -7,13 +7,13 @@ import FeedBack from "../components/FeedBack";
 const Home = () => {
 
     return (
-        <div className="-z-50">
+        <div>
             <Helmet>
                 <title>home</title>
                 <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
             <TextRunning />
-            <Swippp className="-z-50 my-16" />
+            <Swippp className="my-16" />
             <SixCard />
             <h2>To feedback us. You need to login first</h2>
             {/* {

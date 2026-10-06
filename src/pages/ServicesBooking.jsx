@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../api/baseUrl';
 
 const ServicesBooking = ({ isModalOpen, onClose, single }) => {
     // console.log(single);
@@ -44,13 +45,14 @@ const ServicesBooking = ({ isModalOpen, onClose, single }) => {
         console.log(bookedService);
 
         try {
-            const { data } = await axios.post('https://service-provider-phi.vercel.app/bookedService', bookedService)
+            const { data } = await axios.post(`${API_URL}/bookedService`, bookedService)
             console.log(data);
-            toast.success('your data add successfully')
+            toast.success('Service booked successfully')
             form.reset();
             navigate('/book-service');
         } catch (err) {
             console.log(err);
+            toast.error(err.message || 'Failed to book service');
         }
     }
 

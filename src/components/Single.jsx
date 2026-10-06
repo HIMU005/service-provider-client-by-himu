@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'; // ES6
 
 const Single = ({ bannerSingleData }) => {
     return (
-        <div className='-z-50'>
+        <div>
             <div className=" overflow-hidden bg-white rounded-lg shadow-md ">
                 <img className="object-cover w-full h-64" src={bannerSingleData.serviceImg} alt="Article" />
 
@@ -17,7 +17,7 @@ const Single = ({ bannerSingleData }) => {
                         <div className="flex items-center">
                             <div className="flex items-center">
                                 <img className="object-cover h-10 rounded-full" src={bannerSingleData.serviceProviderInfo.serviceProviderImg} alt="Avatar" />
-                                <a href="#" className="mx-2 font-semibold text-black" role="link">J{bannerSingleData.serviceProviderInfo.serviceProviderName}</a>
+                                <span className="mx-2 font-semibold text-black">{bannerSingleData.serviceProviderInfo.serviceProviderName}</span>
                             </div>
                         </div>
                     </div>

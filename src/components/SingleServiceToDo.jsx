@@ -1,10 +1,11 @@
 import axios from 'axios';
 import PropTypes from 'prop-types'; // ES6
+import { API_URL } from '../api/baseUrl';
 
 const SingleServiceToDo = ({ single, getData }) => {
     const handleUpdateStatus = async (orderId, status) => {
         try {
-            await axios.patch(`https://service-provider-phi.vercel.app/bookedService-updateStatus/${single._id}`, { status });
+            await axios.patch(`${API_URL}/bookedService-updateStatus/${single._id}`, { status });
             getData();
         } catch (error) {
             console.error("Error updating status:", error);

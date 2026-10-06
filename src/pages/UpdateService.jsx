@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import home from '../../public/home.svg'
+import { API_URL } from "../api/baseUrl";
 
 const UpdateService = () => {
     const single = useLoaderData();
@@ -27,12 +28,13 @@ const UpdateService = () => {
         }
 
         try {
-            const { data } = await axios.patch(`https://service-provider-phi.vercel.app/service/${single._id}`, serviceUpdateData)
+            const { data } = await axios.patch(`${API_URL}/service/${single._id}`, serviceUpdateData)
             console.log(data);
-            toast.success('your data update successfully')
+            toast.success('Your service was updated successfully')
             navigate('/manage-service');
         } catch (err) {
             console.log(err);
+            toast.error(err.message || 'Failed to update service');
         }
 
     }

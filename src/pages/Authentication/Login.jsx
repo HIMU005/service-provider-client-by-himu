@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
+import { API_URL } from '../../api/baseUrl';
 
 const Login = () => {
     const { signInWithGoogle, setUser, logInUser } = useAuth();
@@ -19,16 +20,17 @@ const Login = () => {
 
         try {
             const result = await logInUser(email, password)
-            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+            const { data } = await axios.post(`${API_URL}/jwt`, {
                 email: result?.user?.email,
             }, { withCredentials: true })
             console.log(data);
             setUser(result.user)
-            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            toast.success(`${result?.user?.displayName || 'User'} logged in successfully`)
             navigate(location.state || '/');
         }
         catch (error) {
             console.log(error);
+            toast.error(error.message || 'Failed to sign in');
         }
     }
 
@@ -37,16 +39,17 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle();
-            const { data } = await axios.post('https://service-provider-20102.web.app/jwt', {
+            const { data } = await axios.post(`${API_URL}/jwt`, {
                 email: result?.user?.email,
             }, { withCredentials: true })
             console.log(data);
             setUser(result.user)
-            toast.success(`${result?.user?.displayName} have logged in successfully`)
+            toast.success(`${result?.user?.displayName || 'User'} logged in successfully`)
             navigate(location.state || '/');
         }
         catch (error) {
             console.log(error);
+            toast.error(error.message || 'Failed to sign in with Google');
         }
     }
 
@@ -58,7 +61,7 @@ const Login = () => {
                 <title>Login</title>
                 <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
-            <h2 className="text-lg font-semibold capitalize dark:text-white"> SignUp Now</h2>
+            <h2 className="text-lg font-semibold capitalize dark:text-white"> Login Now</h2>
 
             <form onSubmit={handleSignIn}>
                 <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">

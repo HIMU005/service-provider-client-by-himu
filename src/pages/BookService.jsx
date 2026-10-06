@@ -3,18 +3,21 @@ import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import home from '../../public/home.svg'
+import { API_URL } from "../api/baseUrl";
 
 const BookService = () => {
     const { user } = useAuth();
     const [allData, setAllData] = useState([]);
 
     useEffect(() => {
-        getData();
+        if (user?.email) {
+            getData();
+        }
     }, [user])
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`https://service-provider-phi.vercel.app/bookedService/${user?.email}`);
+            const { data } = await axios.get(`${API_URL}/bookedService/${user?.email}`);
             setAllData(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -27,8 +30,8 @@ const BookService = () => {
                 <title>Book service</title>
                 <link rel="icon" type="image/svg+xml" href={home} />
             </Helmet>
-            <div className="overflow-x-auto -z-20">
-                <table className="table -z-30">
+            <div className="overflow-x-auto">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
@@ -41,7 +44,7 @@ const BookService = () => {
 
                     <tbody>
                         {
-                            allData.map(single => <tr className="-z-20" key={single._id}>
+                            allData.map(single => <tr key={single._id}>
                                 <td>
                                     {single.serviceName}
                                     <br />
